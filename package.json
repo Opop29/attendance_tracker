@@ -1,9 +1,9 @@
 {
-  "name": "ionic-app-base",
+  "name": "attendance_tracker",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://opop29.github.io/attendance_tracker",
+  "homepage": "https://opop29.github.io/attendance_tracker/",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
