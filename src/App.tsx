@@ -32,6 +32,8 @@ import '@ionic/react/css/palettes/dark.system.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import AttendanceTracker from './pages/AttendanceTracker';
+
 
 setupIonicReact();
 
@@ -39,12 +41,8 @@ const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
       <IonRouterOutlet>
-        <Route exact path="/attendance_tracker/home">
-          <Home />
-        </Route>
-        <Route exact path="/attendance_tracker/">
-          <Redirect to="/attendance_tracker/home" />
-        </Route>
+        <Route exact path="/attendance_tracker" component={AttendanceTracker}/>
+       
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>
