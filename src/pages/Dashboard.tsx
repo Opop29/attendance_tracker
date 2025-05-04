@@ -6,7 +6,7 @@ import soundEffect from './sound/start.wav';
 const Dashboard: React.FC = () => {
   const navigation = useIonRouter();
   const [isHovered, setIsHovered] = useState(false);
-  const [isLoading, setIsLoading] = useState(false); 
+  const [isLoading, setIsLoading] = useState(false);
 
   const playSound = async () => {
     const audio = new Audio(soundEffect);
@@ -18,11 +18,11 @@ const Dashboard: React.FC = () => {
   };
 
   const startGame = async () => {
-    setIsLoading(true); 
+    setIsLoading(true);
     await playSound();
     setTimeout(() => {
-      setIsLoading(false); 
-      navigation.push('/attendance_tracker/app', 'forward', 'replace'); 
+      setIsLoading(false);
+      navigation.push('/attendance_tracker/app', 'forward', 'replace');
     }, 2000);
   };
 
@@ -36,14 +36,14 @@ const Dashboard: React.FC = () => {
     fontSize: '20px',
     fontWeight: 'bold',
     letterSpacing: '1px',
-    border: '2px solid transparent', 
-    boxShadow: isHovered ? '0 12px 50px rgba(0,0,0,0.4)' : '0 8px 30px rgba(0,0,0,0.2)', 
+    border: '2px solid transparent',
+    boxShadow: isHovered ? '0 12px 50px rgba(0,0,0,0.4)' : '0 8px 30px rgba(0,0,0,0.2)',
     textAlign: 'center' as const, 
     lineHeight: '60px',
     cursor: 'pointer',
     transition: 'all 0.3s ease-in-out, transform 0.2s ease, box-shadow 0.3s ease',
-    userSelect: 'none' as const, 
-    transform: isHovered ? 'scale(1.1)' : 'scale(1)', 
+    userSelect: 'none' as const,
+    transform: isHovered ? 'scale(1.1)' : 'scale(1)',
   };
 
   const titleStyle = {
@@ -51,9 +51,9 @@ const Dashboard: React.FC = () => {
     fontWeight: 'bold',
     color: 'white',
     textShadow: '2px 2px 10px rgba(0, 0, 0, 0.6)',
-    textAlign: 'center',
-    marginBottom: '20px',
-    animation: 'bounce 1s ease-in-out infinite', 
+    textAlign: 'center' as const,
+    marginBottom: '10px',  // Adjusted margin to make the separation clearer
+    animation: 'bounce 1s ease-in-out infinite',
   };
 
   return (
@@ -63,7 +63,7 @@ const Dashboard: React.FC = () => {
         <IonLoading
           isOpen={isLoading}
           message="Loading... Please wait"
-          duration={2000} 
+          duration={2000}
         />
         <div style={{
           backgroundImage: 'url("https://art.ngfiles.com/images/0/177_lilg_heaven-and-hell.jpg?f1245258315")',
@@ -75,11 +75,15 @@ const Dashboard: React.FC = () => {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          justifyContent: 'center', 
+          justifyContent: 'center',
           paddingTop: '20px',
           boxSizing: 'border-box',
         }}>
-          <h1 style={titleStyle}>Heaven or Hell</h1> {/* Display the title */}
+          {/* Separate Heaven, Or, and Hell */}
+          <h1 style={{ ...titleStyle, marginBottom: '-50px',marginLeft: '-200px' }}>Heaven</h1>
+          <h1 style={{ ...titleStyle, marginBottom: '0px' }}>or</h1>
+          <h1 style={{ ...titleStyle, marginBottom: '10px',marginLeft: '150px',marginTop: '-20px' }}>Hell</h1>
+          
           <p 
             onClick={startGame} 
             style={buttonStyle}
