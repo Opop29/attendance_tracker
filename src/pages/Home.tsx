@@ -63,7 +63,6 @@ const Home: React.FC = () => {
   const [gameOver, setGameOver] = useState(false);
   const [timeLeft, setTimeLeft] = useState(10);
   const [loading, setLoading] = useState(false); // Add loading state
-  const [gameStarted, setGameStarted] = useState(false); // State for showing the dashboard
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   // Sound effects
@@ -152,10 +151,6 @@ const Home: React.FC = () => {
     setGameOver(false);
   };
 
-  const startGame = () => {
-    setGameStarted(true); // Start the game
-  };
-
   return (
     <IonPage>
       <IonHeader>
@@ -169,89 +164,77 @@ const Home: React.FC = () => {
 
       <IonContent className="ion-padding">
         <div className="home-container">
-          {gameStarted ? (
-            <>
-              <h1>Dula: Langit o Impiyerno</h1>
+          <h1>Dula: Langit o Impiyerno</h1>
 
-              <div className="path">
-                {['😈', '🙁', '😐', '🙂', '😇'].map((emoji, index) => (
-                  <div
-                    key={index}
-                    className={`tile ${emoji === getEmojiFromScore(score) ? 'active' : ''}`}
-                  >
-                    {emoji}
-                  </div>
-                ))}
+          <div className="path">
+            {['😈', '🙁', '😐', '🙂', '😇'].map((emoji, index) => (
+              <div
+                key={index}
+                className={`tile ${emoji === getEmojiFromScore(score) ? 'active' : ''}`}
+              >
+                {emoji}
               </div>
+            ))}
+          </div>
 
-              {!gameOver ? (
-                <div className="question-container">
-                  {loading ? (
-                    <div className="loading-screen">
-                      <p>Loading...</p>
-                    </div>
-                  ) : (
-                    <>
-                      <div className="avatar">
-                        {questions[currentQuestion].type === 'bad' ? '😈' : '😇'}
-                      </div>
-                      <p className="question">{questions[currentQuestion].text}</p>
-
-                      <div className="timer">
-                        <div className="timer-circle">
-                          <svg>
-                            <circle cx="30" cy="30" r="28" />
-                            <circle
-                              cx="30"
-                              cy="30"
-                              r="28"
-                              style={{
-                                strokeDashoffset: 176 - (176 * timeLeft) / 10,
-                                stroke: timeLeft <= 3 ? 'red' : '#4caf50',
-                              }}
-                            />
-                          </svg>
-                          <div className="timer-text">{timeLeft}s</div>
-                        </div>
-                      </div>
-
-                      <div className="btn-group">
-                        <button
-                          className={`btn good ${questions[currentQuestion].type === 'good' ? 'correct-btn' : ''}`}
-                          onClick={() => handleAnswer('yes')}
-                        >
-                          Yes
-                        </button>
-
-                        <button
-                          className={`btn bad ${questions[currentQuestion].type === 'bad' ? 'correct-btn' : ''}`}
-                          onClick={() => handleAnswer('no')}
-                        >
-                          No
-                        </button>
-                      </div>
-                    </>
-                  )}
+          {!gameOver ? (
+            <div className="question-container">
+              {loading ? (
+                <div className="loading-screen">
+                  <p>Loading...</p>
                 </div>
               ) : (
-                <div className="result">
-                  <h2>Nakaabot ka sa: <span className="result-text">{finalDestination}</span></h2>
-                  <p>✅ Correct Answers: <strong>{correctAnswers}</strong></p>
-                  <p>⭐ Correct Answer Points: <strong>{correctPoints}</strong></p>
-                  <p>🎯 Total Score (All): <strong>{score}</strong></p>
-                  <p>🏅 Title: <strong>{getRankTitle(correctAnswers)}</strong></p>
-                  <button className="btn reset" onClick={resetGame}>
-                    Play Again 🔁
-                  </button>
-                </div>
+                <>
+                  <div className="avatar">
+                    {questions[currentQuestion].type === 'bad' ? '😈' : '😇'}
+                  </div>
+                  <p className="question">{questions[currentQuestion].text}</p>
+
+                  <div className="timer">
+                    <div className="timer-circle">
+                      <svg>
+                        <circle cx="30" cy="30" r="28" />
+                        <circle
+                          cx="30"
+                          cy="30"
+                          r="28"
+                          style={{
+                            strokeDashoffset: 176 - (176 * timeLeft) / 10,
+                            stroke: timeLeft <= 3 ? 'red' : '#4caf50',
+                          }}
+                        />
+                      </svg>
+                      <div className="timer-text">{timeLeft}s</div>
+                    </div>
+                  </div>
+
+                  <div className="btn-group">
+                    <button
+                      className={`btn good ${questions[currentQuestion].type === 'good' ? 'correct-btn' : ''}`}
+                      onClick={() => handleAnswer('yes')}
+                    >
+                      Yes
+                    </button>
+
+                    <button
+                      className={`btn bad ${questions[currentQuestion].type === 'bad' ? 'correct-btn' : ''}`}
+                      onClick={() => handleAnswer('no')}
+                    >
+                      No
+                    </button>
+                  </div>
+                </>
               )}
-            </>
+            </div>
           ) : (
-            <div className="dashboard">
-              <h1>Welcome to Langit o Impiyerno</h1>
-              <p>Test your moral choices and find out your fate!</p>
-              <button className="btn start" onClick={startGame}>
-                Start the Game
+            <div className="result">
+              <h2>Nakaabot ka sa: <span className="result-text">{finalDestination}</span></h2>
+              <p>✅ Correct Answers: <strong>{correctAnswers}</strong></p>
+              <p>⭐ Correct Answer Points: <strong>{correctPoints}</strong></p>
+              <p>🎯 Total Score (All): <strong>{score}</strong></p>
+              <p>🏅 Title: <strong>{getRankTitle(correctAnswers)}</strong></p>
+              <button className="btn reset" onClick={resetGame}>
+                Play Again 🔁
               </button>
             </div>
           )}
