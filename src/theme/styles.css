@@ -1,0 +1,31 @@
+/* styles.css */
+
+/* Custom Red Button Style */
+.quiet-game-btn {
+    background-color: red !important;
+    color: white !important;
+    font-weight: bold;
+  }
+  
+  /* Override Ionic default dark theme styles (optional) */
+  body {
+    --background: #121212; /* Dark background color */
+    --color: #ffffff; /* Light text color for dark theme */
+  }
+  
+  ion-button {
+    --background: #ff0000; /* Red background for all buttons */
+    --color: #ffffff; /* White text */
+  }
+  
+  /* Override button styles for dark mode */
+  body.dark-mode ion-button {
+    --background: #f44336; /* Dark red background for dark mode */
+    --color: #ffffff;
+  }
+  
+  body.dark-mode {
+    background-color: #121212; /* Dark theme background */
+    color: white; /* Text color for dark theme */
+  }
+  

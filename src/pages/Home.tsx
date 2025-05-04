@@ -153,7 +153,15 @@ const Home: React.FC = () => {
 
   return (
     <IonPage>
-     
+      <IonHeader>
+        <IonToolbar color="dark">
+          <IonButtons slot="start">
+            <IonMenuButton />
+          </IonButtons>
+          <IonTitle className="title-glow">Path to Heaven or Hell</IonTitle>
+        </IonToolbar>
+      </IonHeader>
+
       <IonContent className="ion-padding">
         <div className="home-container">
           <h1>Dula: Langit o Impiyerno</h1>
