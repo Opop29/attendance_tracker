@@ -1,0 +1,296 @@
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Segoe UI', sans-serif;
+    padding: 20px;
+    background: linear-gradient(to bottom, #1e1e1e, #000000);
+    min-height: 100vh;
+    color: white;
+  }
+  
+  h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #ffcc00;
+    text-shadow: 2px 2px 5px #000;
+  }
+  
+  .path {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 25px;
+    position: relative;
+  }
+  
+  .tile {
+    width: 50px;
+    height: 50px;
+    background-color: #333;
+    color: white;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #666;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+  }
+  
+  .tile.active {
+    background-color: #ffcc00;
+    border: 2px solid #fff;
+    box-shadow: 0 0 10px #ffd700;
+    transform: scale(1.2);
+  }
+  
+  .question-container {
+    background: #222;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+    animation: fadeIn 0.5s ease;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  }
+  
+  .avatar {
+    font-size: 50px;
+    margin-bottom: 10px;
+  }
+  
+  .question {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .btn-group {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s ease;
+  }
+  
+  .btn.good {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .btn.bad {
+    background-color: #e53935;
+    color: white;
+  }
+  
+  .btn.good:hover {
+    background-color: #66bb6a;
+  }
+  
+  .btn.bad:hover {
+    background-color: #ef5350;
+  }
+  
+  .result {
+    text-align: center;
+    animation: fadeIn 0.5s ease;
+  }
+  
+  .result-text {
+    font-size: 28px;
+    color: #ffd700;
+  }
+  
+  .btn.reset {
+    background: #6200ea;
+    color: white;
+    margin-top: 20px;
+    padding: 10px 30px;
+  }
+  
+  .btn.reset:hover {
+    background: #7c4dff;
+  }
+  
+  .score-float {
+    position: absolute;
+    top: -30px;
+    right: -10px;
+    font-size: 24px;
+    color: #00e676;
+    animation: floatUp 1s ease forwards;
+    pointer-events: none;
+  }
+  
+  @keyframes floatUp {
+    0% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-40px);
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(15px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .timer {
+    margin: 20px auto;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+  }
+  
+  .timer-circle {
+    position: relative;
+    width: 60px;
+    height: 60px;
+  }
+  
+  .timer-circle svg {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    transform: rotate(-90deg);
+  }
+  
+  .timer-circle circle {
+    fill: none;
+    stroke-width: 4;
+    stroke: #ccc;
+  }
+  
+  .timer-circle circle:nth-child(2) {
+    stroke: #4ade80;
+    stroke-linecap: round;
+    stroke-dasharray: 176;
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 1s linear;
+  }
+  
+  .timer-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+  }
+  .correct-btn {
+    border: 2px solid limegreen;
+    animation: pulse 1s infinite alternate;
+  }
+  
+  @keyframes pulse {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.05);
+    }
+  }
+  
+  /* Styling for the entire dashboard page */
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('https://media.istockphoto.com/id/1178504966/vector/heaven-and-hell-landscape-with-signpost-vector-art.jpg?s=612x612&w=is&k=20&c=DjDDV2Vu5QgS1RL2J9YahDnKT8Xx_KK3vFYcG3zGF0g=') no-repeat center center;
+    background-size: cover; /* Ensures the image covers the entire background */
+    text-align: center;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    position: relative; /* To allow for absolute positioning of overlay */
+  }
+  
+  /* Adding a dark overlay to make text more readable */
+  .dashboard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    z-index: 1; /* Places the overlay behind text */
+  }
+  
+  .dashboard h1,
+  .dashboard p,
+  .btn.start {
+    z-index: 2; /* Ensure text and button appear above the overlay */
+  }
+  
+  /* Style for the header */
+  .dashboard h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    animation: fadeIn 1.5s ease-out;
+  }
+  
+  /* Style for the paragraph */
+  .dashboard p {
+    font-size: 1.2rem;
+    margin: 20px 0;
+    animation: fadeIn 1.5s ease-out 0.5s;
+  }
+  
+  /* Style for the start button */
+  .btn.start {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    background: #ff7a00;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 1.5s ease-out 1s;
+  }
+  
+  /* Hover and active states for the button */
+  .btn.start:hover {
+    transform: scale(1.1);
+    background: #ff5400;
+  }
+  
+  .btn.start:active {
+    background: #e34a00;
+    transform: scale(1);
+  }
+  
+  /* Fade-in animation */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
