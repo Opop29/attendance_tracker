@@ -30,21 +30,29 @@ const Dashboard: React.FC = () => {
     display: 'inline-block',
     width: '80%',
     height: '60px',
-    background: 'linear-gradient(45deg, #3498db, #9b59b6)',
+    background: isHovered
+      ? 'linear-gradient(135deg, #ff7675, #d63031)' // Hell red on hover
+      : 'linear-gradient(135deg, #74b9ff, #a29bfe)', // Heaven blue default
     color: '#fff',
     borderRadius: '12px',
     fontSize: '20px',
     fontWeight: 'bold',
     letterSpacing: '1px',
-    border: '2px solid transparent',
-    boxShadow: isHovered ? '0 12px 50px rgba(0,0,0,0.4)' : '0 8px 30px rgba(0,0,0,0.2)',
-    textAlign: 'center' as const, 
+    border: isHovered ? '2px solid #fff' : '2px solid transparent',
+    boxShadow: isHovered
+      ? '0 0 30px rgba(255, 255, 255, 0.8), 0 0 60px rgba(255, 0, 0, 0.6)'
+      : '0 4px 20px rgba(0,0,0,0.2)',
+    textAlign: 'center' as const,
     lineHeight: '60px',
     cursor: 'pointer',
-    transition: 'all 0.3s ease-in-out, transform 0.2s ease, box-shadow 0.3s ease',
+    transition: 'all 0.4s ease, transform 0.3s ease, background 0.5s ease-in-out',
     userSelect: 'none' as const,
     transform: isHovered ? 'scale(1.1)' : 'scale(1)',
+    animation: isHovered ? 'pulseEffect 1.5s infinite ease-in-out' : 'none',
+    position: 'relative',    // 👈 Ensures only this element is affected
+    top: '70px',             // 👈 Moves the button downward
   };
+  
 
   const titleStyle = {
     fontSize: '60px',
@@ -52,7 +60,7 @@ const Dashboard: React.FC = () => {
     color: 'white',
     textShadow: '2px 2px 10px rgba(0, 0, 0, 0.6)',
     textAlign: 'center' as const,
-    marginBottom: '10px',  // Adjusted margin to make the separation clearer
+    marginBottom: '10px',  
     animation: 'bounce 1s ease-in-out infinite',
   };
 
@@ -80,10 +88,121 @@ const Dashboard: React.FC = () => {
           boxSizing: 'border-box',
         }}>
           {/* Separate Heaven, Or, and Hell */}
-          <h1 style={{ ...titleStyle, marginBottom: '-50px',marginLeft: '-200px' }}>Heaven</h1>
-          <h1 style={{ ...titleStyle, marginBottom: '0px' }}>or</h1>
-          <h1 style={{ ...titleStyle, marginBottom: '10px',marginLeft: '150px',marginTop: '-20px' }}>Hell</h1>
           
+          <>
+  <style>
+    {`
+      @keyframes flameFlicker {
+        0% {
+          text-shadow: 0 0 15px #ff0000, 0 0 30px #cc0000, 0 0 45px #990000;
+        }
+        50% {
+          text-shadow: 0 0 25px #ff3300, 0 0 50px #cc3300, 0 0 65px #992600;
+          transform: rotate(6deg);
+        }
+        100% {
+          text-shadow: 0 0 15px #ff0000, 0 0 30px #cc0000, 0 0 45px #990000;
+        }
+      }
+    `}
+  </style>
+
+  {/* Heaven 😇 */}
+  <h1 
+    style={{
+      WebkitTextStroke: '3px black',
+      ...titleStyle, 
+      marginBottom: '-50px', 
+      marginLeft: '-100px', 
+      color: 'white',
+      textShadow: '0 0 20px rgba(255, 223, 0, 1), 0 0 30px rgba(255, 223, 0, 0.9), 0 0 40px rgba(255, 223, 0, 0.8), 0 0 50px rgba(255, 223, 0, 0.7), 0 0 60px rgba(255, 223, 0, 0.6)',
+      transform: 'rotate(-10deg)', 
+      transition: 'all 0.3s ease-in-out',
+    }}
+    onMouseEnter={(e) => {
+      e.currentTarget.style.transform = 'scale(1.1) rotate(-5deg)';
+      e.currentTarget.style.textShadow = '0 0 25px rgba(255, 223, 0, 1), 0 0 50px rgba(255, 223, 0, 0.8), 0 0 75px rgba(255, 223, 0, 0.5)';
+    }}
+    onMouseLeave={(e) => {
+      e.currentTarget.style.transform = 'rotate(-10deg)';
+      e.currentTarget.style.textShadow = '0 0 15px rgba(255, 223, 0, 0.8), 0 0 30px rgba(255, 223, 0, 0.6), 0 0 45px rgba(255, 223, 0, 0.4)';
+    }}
+  >
+    Heaven 😇
+  </h1>
+  </>
+<h1 
+  style={{
+    ...titleStyle, 
+    marginBottom: '0px', // Adjusted bottom margin
+    color: 'white', // Text color
+    textShadow: 'none', // Removed text shadow for clarity
+    WebkitTextStroke: '3px black', // Adds a black stroke around the text
+    WebkitTextFillColor: 'white', // Fills the text with white color
+  }}
+>
+  or
+</h1>
+
+<>
+  <style>
+    {`
+      @keyframes flameFlicker {
+        0% {
+          text-shadow: 0 0 15px #ff0000, 0 0 30px #cc0000, 0 0 45px #990000;
+        }
+        50% {
+          text-shadow: 0 0 25px #ff3300, 0 0 50px #cc3300, 0 0 65px #992600;
+          transform: rotate(6deg);
+        }
+        100% {
+          text-shadow: 0 0 15px #ff0000, 0 0 30px #cc0000, 0 0 45px #990000;
+        }
+      }
+    `}
+  </style>
+
+  <h1
+    style={{
+      ...titleStyle,
+      marginBottom: '10px',
+      marginLeft: '150px',
+      marginTop: '-10px',
+      color: '#ff1a1a', // fiery red
+      WebkitTextStroke: '2px black',
+      textShadow: `
+        0 0 10px #ff0000,
+        0 0 20px #cc0000,
+        0 0 30px #990000,
+        0 0 40px #660000
+      `,
+      transform: 'rotate(5deg)',
+      transition: 'all 0.3s ease-in-out',
+      animation: 'flameFlicker 2s infinite ease-in-out',
+    }}
+    onMouseEnter={(e) => {
+      e.currentTarget.style.transform = 'scale(1.05) rotate(3deg)';
+      e.currentTarget.style.textShadow = `
+        0 0 15px #ff1a1a,
+        0 0 30px #cc0000,
+        0 0 45px #990000,
+        0 0 60px #660000
+      `;
+    }}
+    onMouseLeave={(e) => {
+      e.currentTarget.style.transform = 'rotate(5deg)';
+      e.currentTarget.style.textShadow = `
+        0 0 10px #ff0000,
+        0 0 20px #cc0000,
+        0 0 30px #990000,
+        0 0 40px #660000
+      `;
+    }}
+  >
+    Hell 😈
+  </h1>
+</>
+
           <p 
             onClick={startGame} 
             style={buttonStyle}
