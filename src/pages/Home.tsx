@@ -190,6 +190,10 @@ const [resultLoading, setResultLoading] = useState(false);
   };
 
   return (
+
+
+
+    
     <IonPage>
       <IonHeader>
         <IonToolbar color="dark">
