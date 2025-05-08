@@ -54,7 +54,7 @@ import {
                 }}
               >
                 <IonIcon icon={logOutOutline} slot="start"></IonIcon>
-                Quiet game
+                Quit game
               </IonButton>
             </IonContent>
           </IonMenu>
